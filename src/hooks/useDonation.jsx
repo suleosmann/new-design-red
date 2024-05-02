@@ -20,6 +20,7 @@ export const useDonation = () => {
         } = donationDetails;
 
         const finalDetails = details.anonymous ? {
+            title: "Anonymous",
             firstName: "Anonymous",
             lastName: "Donor",
             email: "anonymous@example.com",

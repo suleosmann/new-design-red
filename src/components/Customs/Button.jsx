@@ -6,7 +6,7 @@ const Button = ({ children, onClick, variant, size, className, type, isActive })
   const variants = {
     primary: "bg-custom-red hover:bg-red-700 text-white border-custom-red",
     secondary: "bg-gray-500 hover:bg-gray-700 text-white border-gray-500",
-    active: "bg-white text-red-700 border-custom-red",
+    active: "text-red-700 bg-white border-custom-red",
   };
   const sizes = {
     small: "text-xs",

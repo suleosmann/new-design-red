@@ -144,7 +144,7 @@ const MainContentSwitcher = () => {
   return (
     <div>
       <div>{renderComponent()}</div>
-      {errors && <p className="text-red-500">{errors}</p>}
+      {errors && <p className="text-red-500 text-center">{errors}</p>}
       <div className="flex justify-center space-x-2 mt-4">
         {activeStep > 0 && activeStep < steps.length - 1 && (
           <button

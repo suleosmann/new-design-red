@@ -275,23 +275,25 @@ const DetailsForm = () => {
             {!details.anonymous && (
               <>
                 <div className="grid grid-cols-3 gap-4">
-                <div className="relative">
-  <select
-    id="title"
-    value={details.title}
-    onChange={(e) => handleChange("title", e.target.value)}
-    className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-  >
-    <option value="" disabled hidden>Title</option>
-    <option value="Mr">Mr</option>
-    <option value="Mrs">Mrs</option>
-    <option value="Miss">Miss</option>
-    <option value="Ms">Ms</option>
-    <option value="Dr">Dr</option>
-  </select>
-  
-</div>
-
+                  <div className="relative">
+                    <select
+                      id="title"
+                      value={details.title}
+                      onChange={(e) => handleChange("title", e.target.value)}
+                      className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    >
+                      <option value="" disabled hidden>
+                        Select Title
+                      </option>
+                      <option value="">None</option>
+                      <option value="Mr">Mr</option>
+                      <option value="Mrs">Mrs</option>
+                      <option value="Miss">Miss</option>
+                      <option value="Ms">Ms</option>
+                      <option value="Dr">Dr</option>
+                    </select>
+                    
+                  </div>
 
                   <div className="relative">
                     <input

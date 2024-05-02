@@ -18,6 +18,7 @@ export const DonationProvider = ({ children }) => {
         paymentMethod: 'mpesa',
         details: {
             companyName: "",
+            title:"",
             firstName: "",
             lastName: "",
             email: "",
