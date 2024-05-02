@@ -11,7 +11,6 @@ const DetailsForm = () => {
   const countries = getData();
   const [errors, setErrors] = useState({});
 
-
   // Kenyan counties list
   const kenyanCounties = [
     "Baringo",
@@ -135,14 +134,14 @@ const DetailsForm = () => {
                 Company Name
               </label>
             </div>
-            <div className="flex space-x-2">
-              <div className="relative">
+            <div className="flex flex-col sm:flex-row sm:space-x-2">
+              <div className="relative mb-4 sm:mb-0">
                 <input
                   type="text"
                   id="firstName"
                   value={details.firstName}
                   onChange={(e) => handleChange("firstName", e.target.value)}
-                  className="block px-2.5 pb-2.5 pt-4 w-72 text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block w-full pl-3.5 pr-8 pb-2.5 pt-4 text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                 />
                 <label
@@ -158,7 +157,7 @@ const DetailsForm = () => {
                   id="lastName"
                   value={details.lastName}
                   onChange={(e) => handleChange("lastName", e.target.value)}
-                  className="block px-2.5 pb-2.5 pt-4 w-72 text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block w-full pl-2.5 pr-12 pb-2.5 pt-4 text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                 />
                 <label
@@ -171,54 +170,54 @@ const DetailsForm = () => {
             </div>
 
             <div className="relative">
-            <input
-              type="email"
-              id="email"
-              value={details.email}
-              onChange={(e) => handleChange("email", e.target.value)}
-              className={`block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 ${
-                errors.email ? "border-red-500" : "border-gray-300"
-              } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
-              placeholder=" "
-            />
-            <label
-              htmlFor="email"
-              className={`ml-1 absolute text-sm ${
-                errors.email ? "text-red-500" : "text-gray-500"
-              } duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4`}
-            >
-              Email
-            </label>
-            {errors.email && (
-              <span className="text-red-500 text-sm">{errors.email}</span>
-            )}
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="relative">
               <input
-                type="text"
-                id="phone"
-                value={details.phoneNumber}
-                onChange={(e) => handleChange("phoneNumber", e.target.value)}
+                type="email"
+                id="email"
+                value={details.email}
+                onChange={(e) => handleChange("email", e.target.value)}
                 className={`block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 ${
-                  errors.phoneNumber ? "border-red-500" : "border-gray-300"
+                  errors.email ? "border-red-500" : "border-gray-300"
                 } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                 placeholder=" "
               />
               <label
-                htmlFor="phone"
+                htmlFor="email"
                 className={`ml-1 absolute text-sm ${
-                  errors.phoneNumber ? "text-red-500" : "text-gray-500"
+                  errors.email ? "text-red-500" : "text-gray-500"
                 } duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4`}
               >
-                Phone Number
+                Email
               </label>
-              {errors.phoneNumber && (
-                <span className="text-red-500 text-sm">
-                  {errors.phoneNumber}
-                </span>
+              {errors.email && (
+                <span className="text-red-500 text-sm">{errors.email}</span>
               )}
             </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  id="phone"
+                  value={details.phoneNumber}
+                  onChange={(e) => handleChange("phoneNumber", e.target.value)}
+                  className={`block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 ${
+                    errors.phoneNumber ? "border-red-500" : "border-gray-300"
+                  } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
+                  placeholder=" "
+                />
+                <label
+                  htmlFor="phone"
+                  className={`ml-1 absolute text-sm ${
+                    errors.phoneNumber ? "text-red-500" : "text-gray-500"
+                  } duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4`}
+                >
+                  Phone Number
+                </label>
+                {errors.phoneNumber && (
+                  <span className="text-red-500 text-sm">
+                    {errors.phoneNumber}
+                  </span>
+                )}
+              </div>
               <div className="relative">
                 <input
                   type="text"
@@ -276,22 +275,24 @@ const DetailsForm = () => {
             {!details.anonymous && (
               <>
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      id="title"
-                      value={details.title}
-                      onChange={(e) => handleChange("title", e.target.value)}
-                      className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                    />
-                    <label
-                      htmlFor="title"
-                      className="ml-1 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                    >
-                      Title
-                    </label>
-                  </div>
+                <div className="relative">
+  <select
+    id="title"
+    value={details.title}
+    onChange={(e) => handleChange("title", e.target.value)}
+    className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+  >
+    <option value="" disabled hidden>Title</option>
+    <option value="Mr">Mr</option>
+    <option value="Mrs">Mrs</option>
+    <option value="Miss">Miss</option>
+    <option value="Ms">Ms</option>
+    <option value="Dr">Dr</option>
+  </select>
+  
+</div>
+
+
                   <div className="relative">
                     <input
                       type="text"
@@ -328,61 +329,65 @@ const DetailsForm = () => {
                   </div>
                 </div>
                 <div className="relative">
-            <input
-              type="email"
-              id="email"
-              value={details.email}
-              onChange={(e) => handleChange("email", e.target.value)}
-              className={`block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 ${
-                errors.email ? "border-red-500" : "border-gray-300"
-              } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
-              placeholder=" "
-            />
-            <label
-              htmlFor="email"
-              className={`ml-1 absolute text-sm ${
-                errors.email ? "text-red-500" : "text-gray-500"
-              } duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4`}
-            >
-              Email
-            </label>
-            {errors.email && (
-              <span className="text-red-500 text-sm">{errors.email}</span>
-            )}
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="relative">
-              <input
-                type="text"
-                id="phone"
-                value={details.phoneNumber}
-                onChange={(e) => handleChange("phoneNumber", e.target.value)}
-                className={`block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 ${
-                  errors.phoneNumber ? "border-red-500" : "border-gray-300"
-                } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
-                placeholder=" "
-              />
-              <label
-                htmlFor="phone"
-                className={`ml-1 absolute text-sm ${
-                  errors.phoneNumber ? "text-red-500" : "text-gray-500"
-                } duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4`}
-              >
-                Phone Number
-              </label>
-              {errors.phoneNumber && (
-                <span className="text-red-500 text-sm">
-                  {errors.phoneNumber}
-                </span>
-              )}
-            </div>
+                  <input
+                    type="email"
+                    id="email"
+                    value={details.email}
+                    onChange={(e) => handleChange("email", e.target.value)}
+                    className={`block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 ${
+                      errors.email ? "border-red-500" : "border-gray-300"
+                    } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
+                    placeholder=" "
+                  />
+                  <label
+                    htmlFor="email"
+                    className={`ml-1 absolute text-sm ${
+                      errors.email ? "text-red-500" : "text-gray-500"
+                    } duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4`}
+                  >
+                    Email
+                  </label>
+                  {errors.email && (
+                    <span className="text-red-500 text-sm">{errors.email}</span>
+                  )}
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="phone"
+                      value={details.phoneNumber}
+                      onChange={(e) =>
+                        handleChange("phoneNumber", e.target.value)
+                      }
+                      className={`block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 ${
+                        errors.phoneNumber
+                          ? "border-red-500"
+                          : "border-gray-300"
+                      } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
+                      placeholder=" "
+                    />
+                    <label
+                      htmlFor="phone"
+                      className={`ml-1 absolute text-sm ${
+                        errors.phoneNumber ? "text-red-500" : "text-gray-500"
+                      } duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white pl-2.5 pr-12 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4`}
+                    >
+                      Phone Number
+                    </label>
+                    {errors.phoneNumber && (
+                      <span className="text-red-500 text-sm">
+                        {errors.phoneNumber}
+                      </span>
+                    )}
+                  </div>
                   <div className="relative">
                     <input
                       type="text"
                       id="address"
                       value={details.address}
                       onChange={(e) => handleChange("address", e.target.value)}
-                      className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      className="block pl-2.5 pr-12 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
                     />
                     <label
@@ -399,7 +404,7 @@ const DetailsForm = () => {
                       id="country"
                       value={details.country}
                       onChange={(e) => handleChange("country", e.target.value)}
-                      className="block w-full px-2.5 pb-2.5 pt-4 text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
+                      className="block w-full pl-2.5 pr-12 pb-2.5 pt-4 text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
                     >
                       <option value="">Select Country</option>
                       {countries.map((country) => (
@@ -415,7 +420,7 @@ const DetailsForm = () => {
                         id="county"
                         value={details.county}
                         onChange={(e) => handleChange("county", e.target.value)}
-                        className="block w-full px-2.5 pb-2.5 pt-4 text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
+                        className="block w-full pl-2.5 pr-12 pb-2.5 pt-4 text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
                       >
                         <option value="">Select County</option>
                         {kenyanCounties.map((county) => (
@@ -430,21 +435,21 @@ const DetailsForm = () => {
               </>
             )}
             {donationType !== "Pledge" && (
-            <div className="relative mt-4">
-              <input
-                type="checkbox"
-                id="anonymous"
-                checked={details.anonymous}
-                onChange={toggleAnonymous}
-                className="form-checkbox h-5 w-5 text-blue-600 rounded"
-              />
-              <label
-                htmlFor="anonymous"
-                className="ml-2 text-sm font-medium text-gray-700"
-              >
-                Check the box if you would like to donate anonymously
-              </label>
-            </div>)}
+              <div className="relative mt-4">
+                <input
+                  type="checkbox"
+                  checked={donationDetails.details.anonymous}
+                  onChange={(e) => setDetails("anonymous", e.target.checked)}
+                  className="form-checkbox text-custom-red accent-custom-red"
+                />
+                <label
+                  htmlFor="anonymous"
+                  className="ml-2 text-sm font-medium text-gray-700"
+                >
+                  Check the box if you would like to donate anonymously
+                </label>
+              </div>
+            )}
           </>
         )}
       </div>

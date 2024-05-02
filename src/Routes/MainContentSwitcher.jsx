@@ -5,7 +5,7 @@ import DonationAmountPage from "../pages/DonationAmountPage";
 import DetailsPage from "../pages/DetailsPage";
 import PaymentMethodPage from "../pages/PaymentMethodPage";
 import ConfirmationPage from "../pages/ConfirmationPage";
-import { useDonationContext } from '../contexts/DonationContext';
+import { useDonationContext } from "../contexts/DonationContext";
 import { useDonation } from "../hooks/useDonation";
 
 const MainContentSwitcher = () => {
@@ -46,7 +46,10 @@ const MainContentSwitcher = () => {
           setErrors("Please select a donation type.");
           return false;
         }
-        if (donationDetails.donationType === 'Pledge' && !donationDetails.pledgeType) {
+        if (
+          donationDetails.donationType === "Pledge" &&
+          !donationDetails.pledgeType
+        ) {
           setErrors("Please select a pledge type.");
           return false;
         }
@@ -58,11 +61,42 @@ const MainContentSwitcher = () => {
         }
         break;
       case "details":
-        if (!donationDetails.details.firstName || !donationDetails.details.email) {
+        // If the donation is marked as anonymous, skip validation for all details fields.
+        if (donationDetails.details.anonymous) {
+          return true; // Assume all is good since no details are needed.
+        }
+
+        // Start with the basic required fields
+        let requiredFields = [
+          "firstName",
+          "lastName",
+          "email",
+          "phoneNumber",
+          "address",
+          "country",
+        ];
+
+        // If the country is Kenya, add 'county' to the required fields
+        if (donationDetails.details.country === "Kenya") {
+          requiredFields.push("county");
+        }
+
+        // If the donation option is 'organization', add 'companyName' to the required fields
+        if (donationDetails.donationOption === "organization") {
+          requiredFields.push("companyName");
+        }
+
+        // Check if any of the required fields are empty
+        const missingField = requiredFields.some(
+          (field) => !donationDetails.details[field]
+        );
+
+        if (missingField) {
           setErrors("Please complete all required fields.");
           return false;
         }
         break;
+
       case "paymentMethod":
         if (!donationDetails.paymentMethod) {
           setErrors("Please select a payment method.");
@@ -87,9 +121,18 @@ const MainContentSwitcher = () => {
         logDonationDetails();
         setActiveStep(activeStep + 1);
       } else {
-        setActiveStep(activeStep + 1);
+        if (
+          donationDetails.donationType !== "One-off" &&
+          (!donationDetails.pledgeType || donationDetails.pledgeType === "")
+        ) {
+          // Skip to payment method if the donation type is not One-off and pledge type is not selected
+          setActiveStep(steps.indexOf("paymentMethod"));
+        } else {
+          setActiveStep(activeStep + 1);
+        }
       }
     }
+    logDonationDetails();
   };
 
   const handleBack = () => {
@@ -121,14 +164,20 @@ const MainContentSwitcher = () => {
           >
             Go Back to Site
           </a>
-        ) : activeStep < steps.length - 1 && (
-          <button
-            onClick={handleNext}
-            className="flex items-center bg-custom-red hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-150 ease-in-out"
-          >
-            <span>{activeStep === steps.indexOf("paymentMethod") ? "Confirm" : "Continue"}</span>
-            <FaCaretRight className="ml-2" />
-          </button>
+        ) : (
+          activeStep < steps.length - 1 && (
+            <button
+              onClick={handleNext}
+              className="flex items-center bg-custom-red hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-150 ease-in-out"
+            >
+              <span>
+                {activeStep === steps.indexOf("paymentMethod")
+                  ? "Confirm"
+                  : "Continue"}
+              </span>
+              <FaCaretRight className="ml-2" />
+            </button>
+          )
         )}
       </div>
     </div>

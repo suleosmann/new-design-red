@@ -11,7 +11,7 @@ const Confirmation = () => {
 
   return (
     <div className=" bg-white flex flex-col items-center justify-center p-4">
-      <h1 className="text-6xl font-bold my-16 ">Congratulations</h1>
+      <h1 className="text-6xl font-bold my-16 sm-text-3xl">Congratulations</h1>
       <h2 className="text-2xl font-bold my-2">Your Donation</h2>
       <p className="text-5xl font-bold mb-4">{currency} {totalAmount}</p>
       <p className="text-center text-sm mt-6  mb-6 w-full">

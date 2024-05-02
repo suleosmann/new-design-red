@@ -76,7 +76,7 @@ const DonationType = () => {
               Selected: {selectedPledgeType}
             </p>
           )}
-      <p className="text-gray-600 mt-10 px-32">
+      <p className="text-gray-600 mt-10 px-4 sm:px-32">
         Thank you for deciding to make a vital donation. Your kindness will help give our courageous lifesavers everything they need to keep others – and themselves – safe.
       </p>
     </div>

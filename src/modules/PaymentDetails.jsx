@@ -38,9 +38,9 @@ const PaymentDetails = () => {
   return (
     <div className="min-w-lg mx-auto p-4 bg-white">
       <h3 className="text-lg font-bold mb-1">Your Donation</h3>
-      <h1 className="text-5xl font-bold mb-2">{currency} {donationDetails.amount}</h1>
+      <h1 className="text-5xl font-bold mb-2">{currency} {donationDetails.totalAmount}</h1>
       <div className="my-8 border-b-2 border-gray-400"></div>
-      <h3 className="text-5xl font-bold">Payment Methods</h3>
+      <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-5xl font-bold mb-10">Payment Methods</h3>
       <div className="flex space-x-4 my-4">
         <button
           className={`p-2 rounded ${
