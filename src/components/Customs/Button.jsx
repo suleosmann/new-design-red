@@ -2,11 +2,11 @@
 import React from 'react';
 
 const Button = ({ children, onClick, variant, size, className, type, isActive }) => {
-  const baseStyle = "text-white font-bold py-4 px-4 rounded-lg focus:outline-none focus:shadow-outline border-2";
+  const baseStyle = "font-bold py-4 px-4 rounded-lg focus:outline-none focus:shadow-outline border-2";
   const variants = {
     primary: "bg-custom-red hover:bg-red-700 text-white border-custom-red",
     secondary: "bg-gray-500 hover:bg-gray-700 text-white border-gray-500",
-    active: "text-red-700 bg-white border-custom-red",
+    active: " bg-white text-red-600 border-custom-red",
   };
   const sizes = {
     small: "text-xs",
