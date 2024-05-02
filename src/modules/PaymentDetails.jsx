@@ -62,65 +62,66 @@ const PaymentDetails = () => {
         )}
       </div>
       {selectedMethod === "card" && (
-        <div>
-          <div className="relative mb-4">
-            <input
-              type="text"
-              id="CardNumber"
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              onChange={(e) =>
-                handleCardDetailsChange("cardNumber", e.target.value)
-              }
-            />
-            <label
-              htmlFor="CardNumber"
-              className="ml-2 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-            >
-              Card Number
-            </label>
-            <img
-              className="absolute right-2 top-2 w-16 h-10"
-              src={card}
-              alt="Card Logo"
-            />
-          </div>
-          <div className="flex gap-4">
-            <div className="relative w-1/2">
-              <input
-                type="text"
-                id="Expiry"
-                placeholder=" "
-                className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                onChange={(e) =>
-                  handleCardDetailsChange("expiryDate", e.target.value)
-                }
-              />
-              <label
-                htmlFor="Expiry"
-                className="ml-2 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-              >
-                Expiry Date
-              </label>
-            </div>
-            <div className="relative w-1/3">
-              <input
-                type="text"
-                id="CVC"
-                placeholder=" "
-                className="block px-2.5 pb-2.5 pt-4 w-64 text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                onChange={(e) => handleCardDetailsChange("cvc", e.target.value)}
-              />
-              <label
-                htmlFor="CVC"
-                className="ml-2 absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-              >
-                CVC
-              </label>
-            </div>
-          </div>
-        </div>
-      )}
+  <div>
+    <div className="relative mb-4">
+      <input
+        type="text"
+        id="CardNumber"
+        className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        onChange={(e) =>
+          handleCardDetailsChange("cardNumber", e.target.value)
+        }
+      />
+      <label
+        htmlFor="CardNumber"
+        className="absolute left-2 top-2 z-10 text-sm text-gray-500 transition-all duration-300 scale-75 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1/2 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >
+        Card Number
+      </label>
+      <img
+        className="absolute right-2 top-2 w-16 h-10"
+        src={card}
+        alt="Card Logo"
+      />
+    </div>
+    <div className="flex flex-col sm:flex-row gap-4">
+      <div className="relative w-full sm:w-1/2">
+        <input
+          type="text"
+          id="Expiry"
+          placeholder=" "
+          className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          onChange={(e) =>
+            handleCardDetailsChange("expiryDate", e.target.value)
+          }
+        />
+        <label
+          htmlFor="Expiry"
+          className="absolute left-2 top-2 z-10 text-sm text-gray-500 transition-all duration-300 scale-75 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1/2 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >
+          Expiry Date
+        </label>
+      </div>
+      <div className="relative w-full sm:w-1/3">
+        <input
+          type="text"
+          id="CVC"
+          placeholder=" "
+          className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          onChange={(e) => handleCardDetailsChange("cvc", e.target.value)}
+        />
+        <label
+          htmlFor="CVC"
+          className="absolute left-2 top-2 z-10 text-sm text-gray-500 transition-all duration-300 scale-75 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1/2 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >
+          CVC
+        </label>
+      </div>
+    </div>
+  </div>
+)}
+
       {selectedMethod === "mpesa" && currency !== "USD" && (
         <div>
           <div className="flex justify-center">
@@ -131,13 +132,15 @@ const PaymentDetails = () => {
               Phone Number
             </label>
             <input
-              type="tel"
-              id="phone"
-              className="mt-1 block w-full px-4 py-2 border-2 border-gray-300 text-lg rounded focus:border-blue-500 focus:outline-none"
-              placeholder="Enter your phone number"
-              value={phoneNumber === "anonymous" ? phoneNumber : ""}
-              onChange={(e) => handleMpesaChange(e.target.value)}
-            />
+  type="tel"
+  id="phone"
+  className="mt-1 block w-full px-4 py-2 border-2 border-gray-300 text-lg rounded focus:border-blue-500 focus:outline-none"
+  placeholder="Enter your phone number"
+  value={phoneNumber || ""}  // This ensures the input is editable and displays an existing number, or is empty if no number is set
+  onChange={(e) => handleMpesaChange(e.target.value)}
+/>
+
+
           </div>
           <div className="mb-4">
             <label htmlFor="amount" className="block text-sm font-medium text-gray-700">

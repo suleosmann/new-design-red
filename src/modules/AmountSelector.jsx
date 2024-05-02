@@ -68,21 +68,33 @@
         setIncludeProcessingFee(false);
         setAmount(actualAmount);
       } else {
-        // Ensure that if "Other" is clicked again it doesn't reset unless necessary
-        if (otherAmount === "" || isNaN(parseFloat(otherAmount))) {
-          setOtherAmount("0"); // Only reset to "0" if necessary
+        // Only reset otherAmount to empty if it's necessary (i.e., if the user has not entered any value)
+        if (!otherAmount) {
+          setOtherAmount("");  // Maintain as empty unless user interaction
         } else {
-          setAmount(parseFloat(otherAmount));
+          setAmount(parseFloat(otherAmount) || 0);
         }
       }
     };
     
 
-    // Calculate the potential processing fee, whether or not it's included
     const potentialProcessingFee = useMemo(() => {
-      const baseAmount = donationAmount === "Other" ? parseFloat(otherAmount) : parseAmount(donationAmount);
-      return (baseAmount * 0.035).toFixed(2);
+      // First check if the amount is numeric and not empty
+      let baseAmount = 0;
+      if (donationAmount === "Other") {
+        baseAmount = parseFloat(otherAmount) || 0;  // This will default to 0 if otherAmount is empty or NaN
+      } else {
+        baseAmount = parseAmount(donationAmount);
+      }
+    
+      // Compute the processing fee only if the base amount is a positive number
+      if (baseAmount > 0) {
+        return (baseAmount * 0.035).toFixed(2);
+      } else {
+        return "0.00";  // Return "0.00" or some other default value when the base amount is 0 or invalid
+      }
     }, [donationAmount, otherAmount, currency]);
+    
 
     const donationDisplayText = donationType === 'One-off' ? 'One Off Donation' : 'Pledge Donation';
 
@@ -138,14 +150,14 @@
     </button>
   </div>
   {donationAmount === "Other" && (
-    <input
-      type="text"
-      placeholder="Enter Amount"
-      className="w-full px-4 py-2 border-2 border-custom-red rounded mb-4"
-      value={otherAmount}
-      onChange={(e) => setOtherAmount(e.target.value)}
-    />
-  )}
+  <input
+    type="text"
+    placeholder="Enter Amount"
+    className="w-full px-4 py-2 border-2 border-custom-red rounded mb-4"
+    value={otherAmount}
+    onChange={(e) => setOtherAmount(e.target.value)}
+  />
+)}
   {donationAmount && (
     <div className="mb-4 ml-4 sm:ml-12">
       <label className="inline-flex items-center space-x-2 font-normal">
